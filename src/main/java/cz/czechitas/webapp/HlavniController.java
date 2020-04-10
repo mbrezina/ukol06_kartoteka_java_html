@@ -55,22 +55,20 @@ public class HlavniController {
         ModelAndView drzak = new ModelAndView("uprava");
         Kontakt jeden = findById(idKontaktu);
         drzak.addObject("jedenKontakt", jeden);
+        drzak.addObject("zadani", "Zde můžete upravit pohádkovou postavu");
         return drzak;
     }
 
     @RequestMapping(value = "/uprava/{idKontaktu:[0-9]+}", method = RequestMethod.POST)
     public ModelAndView UpravKontakt(@PathVariable("idKontaktu") Long idKontaktu, DetailForm detailForm) {
-
         upravKontakt(idKontaktu, detailForm);
-
         return new ModelAndView("redirect:/seznam");
     }
 
     @RequestMapping(value = "/novy", method = RequestMethod.GET)
     public ModelAndView zobrazNovy() {
-        ModelAndView drzak = new ModelAndView("uprava");
+        ModelAndView drzak = new ModelAndView("novy");
         drzak.addObject("jedenKontakt", new DetailForm());
-        drzak.addObject("nadpis_novy", "Zadejte novou pohádkovou postavu");
         return drzak;
     }
 
@@ -93,6 +91,9 @@ public class HlavniController {
 
     private void upravKontakt(Long idKontaktu, DetailForm detailForm) {
         Kontakt upravovanyKontakt = findById(idKontaktu);
+        if (!detailForm.getFotka().isEmpty()) {
+            upravovanyKontakt.setFotka(detailForm.getFotka());
+        }
         if (!detailForm.getJmeno().isEmpty()) {
             upravovanyKontakt.setJmeno(detailForm.getJmeno());
         }

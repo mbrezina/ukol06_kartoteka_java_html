@@ -12,8 +12,8 @@
     <title>Generátor</title>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i&amp;subset=latin-ext"
           rel="stylesheet"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
-    <link rel="shortcut icon" href="images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
+    <link rel="shortcut icon" href="../static/images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
 </head>
 <body>
 <div th:insert="fragments/menu :: menu">menu</div>
@@ -21,29 +21,28 @@
 <div class="container">
     <div class="jumbotron">
         <br><br><br>
-        <h1 class=text-primary th:text="${jedenKontakt.jmeno}">Vikuňa</h1>
-        <h2 class=text-success>Zde můžete upravit pohádkovou postavu</h2>
+        <h1 class=text-success>Zadejte novou pohádkovou postavu</h1>
         <br><br>
         <form method="post">
             <table class="table table-hover">
+
                 <tr>
                     <td height="100">
-                        <!--<img src="../static/images/carod.jpg" th:src="@{'/images/carod.jpg'}" class="obrazek_pexesa"-->
-                        <img src="../images/carod.jpg" th:src="@{'/images/'+ ${jedenKontakt.fotka}}" class="obrazek_pexesa"
+                        <img src="../static/images/carod.jpg" th:src="@{'/images/carod.jpg'}" class="obrazek_pexesa"
                              alt="zviřátko"/>
 
                     </td>
                     <td height="100">
                         <img src="../static/images/mak.jpg" th:src="@{'/images/mak.jpg'}" class="obrazek_pexesa"
-                             alt="zviřátko"/>
+                             alt="Maková panenka"/>
                     </td>
                     <td height="100">
                         <img src="../static/images/rakos.jpg" th:src="@{'/images/rakos.jpg'}" class="obrazek_pexesa"
-                             alt="zviřátko"/>
+                             alt="Rákosníček"/>
                     </td>
                     <td height="100">
                         <img src="../static/images/staf.jpg" th:src="@{'/images/staf.jpg'}" class="obrazek_pexesa"
-                             alt="zviřátko"/>
+                             alt="Štaflík"/>
                     </td>
                 </tr>
                 <tr>
