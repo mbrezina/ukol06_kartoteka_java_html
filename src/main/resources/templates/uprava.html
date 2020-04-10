@@ -27,6 +27,14 @@
         <form method="post">
             <table>
                 <div class="form-group">
+<!--
+                    <img src="../static/images/animals/kocka_1.jpg"
+                         th:src="@{'/images/animals/' + ${jmenoObrazku.getNazevSouboru()}}"
+                         class="obrazek_kocka_pes" alt="zviřátko"/>
+                    <label class="custom-radio">Kočka</label></input>
+                    <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="kočka">-->
+
+
                     <label for="jmeno">Jméno</label>
                     <textarea class="form-control" name="jmeno" id="jmeno" th:placeholder="${jedenKontakt.jmeno}" th:value="${jedenKontakt.jmeno}" rows="1"></textarea>
 
