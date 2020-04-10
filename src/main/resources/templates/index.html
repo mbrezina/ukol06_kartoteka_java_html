@@ -15,66 +15,58 @@
           rel="stylesheet"/>
     <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
     <link rel="shortcut icon" href="images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
+    <!--/*@thymesVar id="jmeno" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="povolenai" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="bydliste" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="email" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="idKontaktu" type="java.lang.Long"*/-->
+
+
 </head>
-
 <body>
-<div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" style="">
-    <div class="container">
-
-        <a class="navbar-brand">Generátor nizozemských jídel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://st3.czechitas.cikanek.net/ukol01/">Autorka</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.linkedin.com/in/burjanova/">LinkedIn</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<div th:insert="fragments/menu :: menu">menu</div>
 
 <div class="container">
     <div class="jumbotron">
-<br><br><br>
-        <h1>Seznam kontaktů</h1>
+        <br><br><br>
+        <h1 class="text-primary">Pohádkové kontakty</h1><br>
 
-        <table>
-            <tr>
-                <th>Číslo</th>
-                <th>Název</th>
-                <th>Autor</th>
-                <th>Akce</th>
+        <table class="table table-hover">
+            <tr class="table-primary">
+                <th>Jméno</th>
+                <th>Povolání</th>
+                <th>Bydliště</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+
             </tr>
-            <tr th:each="clanek : ${clanky}">
-                <td th:text="${clanek.idClanku}">1</td>
-                <td th:text="${clanek.nazev}">První článek</td>
-                <td th:text="${clanek.autor}">Kamil Ševeček</td>
+            <tr th:each="jedenKontakt : ${seznamKontaktu}">
+                <td th:text="${jedenKontakt.jmeno}">Cipísek</td>
+                <td th:text="${jedenKontakt.povolani}">Syn loupežníka</td>
+                <td th:text="${jedenKontakt.bydliste}">Řáholec</td>
+                <td th:text="${jedenKontakt.email}">jhdsagf@vikuna.cz</td>
                 <td>
-                    <a th:href="@{'/detail/' + ${clanek.idClanku}}"  href="detail.html" class="ui-button">Detail</a>
+                    <a th:href="@{'/detail/' + ${jedenKontakt.idKontaktu}}" href="detail.html"
+                       class="btn btn-outline-info">Detail</a>
                 </td>
                 <td>
-                    <form th:action="@{'/seznam/' + ${clanek.idClanku}}"  method="post">
+                    <form th:action="@{'/seznam/' + ${jedenKontakt.idKontaktu}}" method="post">
                         <input type="hidden" name="_method" value="DELETE"/>
-                        <input type="submit" value="Smazat" class="ui-button"/>
+                        <input type="submit" value="Smazat" class="btn btn-outline-danger"/>
                     </form>
                 </td>
             </tr>
         </table>
-
-        <a th:href="@{'/novy'}"  href="detail.html" class="ui-button">Vytvořit nový článek</a>
-
+        <a th:href="@{'/novy'}" href="detail.html" class="btn btn-outline-success">Zadat nový kontakt</a>
     </div>
     <footer class="paticka">
-        <br>
-        <p>@2020 Martina Burjanová, CSS by <a href="https://bootswatch.com/materia/">Materia Bootswatch</a></p>
+        <div>
+            <p th:insert="fragments/footer :: footer">Footer</p>
+        </div>
     </footer>
 
-
+</div>
 </body>
+
 </html>

@@ -1,34 +1,28 @@
 package cz.czechitas.webapp;
 
 import org.springframework.stereotype.*;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Stream;
 
 @Controller
 public class HlavniController {
 
     Long sekvence = 1000L;
-    private List<Clanek> seznamClanku;
+    private List<Kontakt> seznamKontaktu;
 
     public HlavniController() {
-        seznamClanku = new ArrayList<>();
-        seznamClanku.add(new Clanek(sekvence++, "Velikonoce se blíží", "Karel May"));
-        seznamClanku.add(new Clanek(sekvence++, "Recept na Mazanec", "Jana Novotná"));
-        seznamClanku.add(new Clanek(sekvence++, "Koronavirus", "Kája Mařík"));
-        seznamClanku.add(new Clanek(sekvence++, "Kindervajíčka jsou ve slevě", "Apolena Malá"));
-        seznamClanku.add(new Clanek(sekvence++, "Vánoce jsou tady", "Pavel Slepička"));
+        seznamKontaktu = new ArrayList<Kontakt>();
+        seznamKontaktu.add(new Kontakt(sekvence++, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        seznamKontaktu.add(new Kontakt(sekvence++, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        seznamKontaktu.add(new Kontakt(sekvence++, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        seznamKontaktu.add(new Kontakt(sekvence++, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        seznamKontaktu.add(new Kontakt(sekvence++, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        seznamKontaktu.add(new Kontakt(sekvence++, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        seznamKontaktu.add(new Kontakt(sekvence++, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
     }
-
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView zobrazIndex() {
@@ -38,7 +32,7 @@ public class HlavniController {
     @RequestMapping(value = "/seznam", method = RequestMethod.GET)
     public ModelAndView zobrazSeznam() {
         ModelAndView drzak = new ModelAndView("index");
-        drzak.addObject("clanky", seznamClanku);
+        drzak.addObject("seznamKontaktu", seznamKontaktu);
         return drzak;
     }
 
@@ -48,78 +42,80 @@ public class HlavniController {
         return new ModelAndView("redirect:/seznam");
     }
 
-
-    @RequestMapping(value = "/detail/{idClanku:[0-9]+}", method = RequestMethod.GET)
-    public ModelAndView zobrazDetail(@PathVariable Long idClanku) {
+    @RequestMapping(value = "/detail/{idKontaktu:[0-9]+}", method = RequestMethod.GET)
+    public ModelAndView zobrazDetail(@PathVariable Long idKontaktu) {
         ModelAndView drzak = new ModelAndView("detail");
-        Clanek jeden = findById(idClanku);
-        drzak.addObject("jedenClanek", jeden);
+        Kontakt jeden = findById(idKontaktu);
+        drzak.addObject("jedenKontakt", jeden);
         return drzak;
     }
 
-    @RequestMapping(value = "/detail/{idClanku:[0-9]+}", method = RequestMethod.POST)
-    public ModelAndView zpracujDetail(@PathVariable("idClanku") Long idClanku, DetailForm detailForm) {
-        upravClanek(idClanku, detailForm);
+    @RequestMapping(value = "/uprava/{idKontaktu:[0-9]+}", method = RequestMethod.GET)
+    public ModelAndView UmozniUpravu(@PathVariable Long idKontaktu) {
+        ModelAndView drzak = new ModelAndView("uprava");
+        Kontakt jeden = findById(idKontaktu);
+        drzak.addObject("jedenKontakt", jeden);
+        return drzak;
+    }
+
+    @RequestMapping(value = "/uprava/{idKontaktu:[0-9]+}", method = RequestMethod.POST)
+    public ModelAndView UpravKontakt(@PathVariable("idKontaktu") Long idKontaktu, DetailForm detailForm) {
+
+        upravKontakt(idKontaktu, detailForm);
+
         return new ModelAndView("redirect:/seznam");
     }
 
     @RequestMapping(value = "/novy", method = RequestMethod.GET)
     public ModelAndView zobrazNovy() {
-        ModelAndView drzak = new ModelAndView("detail");
-        drzak.addObject("jedenClanek", new DetailForm());
+        ModelAndView drzak = new ModelAndView("uprava");
+        drzak.addObject("jedenKontakt", new DetailForm());
+        drzak.addObject("nadpis_novy", "Zadejte novou pohádkovou postavu");
         return drzak;
-
-        //upravClanek(cislo, detailForm);
-        //return new ModelAndView("redirect:/seznam");
     }
 
     @RequestMapping(value = "/novy", method = RequestMethod.POST)
     public ModelAndView zpracujNovy(DetailForm detailForm) {
-        ModelAndView drzak = new ModelAndView("detail");
+        ModelAndView drzak = new ModelAndView("uprava");
         ulozClanek(detailForm);
         return new ModelAndView("redirect:/seznam");
-
     }
 
     private void ulozClanek(DetailForm detailform) {
-        String nazev = detailform.getNazev();
-        String autor = detailform.getAutor();
-        Clanek novyClanek = new Clanek(sekvence++, nazev, autor);
-        seznamClanku.add(novyClanek);
+        String jmeno = detailform.getJmeno();
+        String povolani = detailform.getPovolani();
+        String bydliste = detailform.getBydliste();
+        String email = detailform.getEmail();
+        String fotka = detailform.getFotka();
+        Kontakt novykontakt = new Kontakt(sekvence++, jmeno, povolani, bydliste, email, fotka);
+        seznamKontaktu.add(novykontakt);
     }
 
-    private void upravClanek(Long cislo, DetailForm detailForm) {
-        Clanek upravovanyClanek = findById(cislo);
-        upravovanyClanek.setNazev(detailForm.getNazev());
-        upravovanyClanek.setAutor(detailForm.getAutor());
-
+    private void upravKontakt(Long idKontaktu, DetailForm detailForm) {
+        Kontakt upravovanyKontakt = findById(idKontaktu);
+        if (!detailForm.getJmeno().isEmpty()) {
+            upravovanyKontakt.setJmeno(detailForm.getJmeno());
+        }
+        if (!detailForm.getPovolani().isEmpty()) {
+            upravovanyKontakt.setPovolani(detailForm.getPovolani());
+        }
+        if (!detailForm.getBydliste().isEmpty()) {
+            upravovanyKontakt.setBydliste(detailForm.getBydliste());
+        }
+        if (!detailForm.getEmail().isEmpty()) {
+            upravovanyKontakt.setEmail(detailForm.getEmail());
+        }
     }
 
     private void smazClanekPodleCisla(Long idClanku) {
-        Clanek clanek = findById(idClanku);
-        seznamClanku.remove(clanek);
-
+        Kontakt kontakt = findById(idClanku);
+        seznamKontaktu.remove(kontakt);
     }
 
-    //private int ziskejIndexClankuPodleCisla(Long idClanku) {
-    //   for (int i = 0; i < clanky.size(); i++) {
-    //      if (clanky.get(i).getIdClanku().equals(idClanku)) {
-    //         return i;
-    //     }
-    //    }
-    //    return -1;
-    //}
-
-
-    //    private Clanek ziskejClanekPodleCisla(Long idClanku) {
-//        int index = ziskejIndexClankuPodleCisla(idClanku);
-//        return seznamClanku.get(index);
-//    }
-//
-    private Clanek findById(Long idHledanehoClanku) {
-        for (Clanek clanek : seznamClanku) {
-            if (clanek.getIdClanku().equals(idHledanehoClanku)) {
-                return clanek;
+    private Kontakt findById(Long idHledanehoKontaktu) {
+        for (Kontakt kontakt : seznamKontaktu) {
+            if (kontakt.getIdKontaktu().equals(idHledanehoKontaktu)) {
+                return kontakt;
             }
         }
         return null;

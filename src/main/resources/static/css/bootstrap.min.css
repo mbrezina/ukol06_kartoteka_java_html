@@ -2307,10 +2307,10 @@ pre code {
     width: 100%;
     height: calc(1.5em + 2rem);
     padding: 1rem 0;
-    font-size: 0.8125rem;
+    font-size: 1.6125rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #666;
+    color: #4CAF50;
     background-color: transparent;
     background-clip: padding-box;
     border: 0rem solid transparent;
@@ -12286,4 +12286,14 @@ select[multiple], select.form-control[multiple] {
 .obrazek_vlajky {
     float: right;
     width: 20%;
+}
+
+.obrazek_pexesa {
+    float: right;
+    width: 25%;
+    padding: 15px;
+}
+
+li{
+    margin-bottom: 10px;
 }

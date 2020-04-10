@@ -1,24 +1,49 @@
 package cz.czechitas.webapp;
 
 public class DetailForm {
-    private String nazev;
-    private String autor;
+    private String jmeno;
+    private String bydliste;
+    private String povolani;
+    private String email;
+    private String fotka;
 
-    public void setNazev(String nazev) {
-        this.nazev = nazev;
+    public void setFotka(String fotka) {
+        this.fotka = fotka;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public String getFotka() {
+        return fotka;
     }
 
-    public String getNazev() {
-        return nazev;
+    public void setJmeno(String jmeno) {
+        this.jmeno = jmeno;
     }
 
-    public String getAutor() {
-        return autor;
+    public void setBydliste(String bydliste) {
+        this.bydliste = bydliste;
     }
 
+    public void setPovolani(String povolani) {
+        this.povolani = povolani;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getJmeno() {
+        return jmeno;
+    }
+
+    public String getBydliste() {
+        return bydliste;
+    }
+
+    public String getPovolani() {
+        return povolani;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

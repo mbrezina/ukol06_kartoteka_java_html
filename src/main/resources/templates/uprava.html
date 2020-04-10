@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cs"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="My lovely web page"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content="java, web"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Generátor</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i&amp;subset=latin-ext"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
+    <link rel="shortcut icon" href="images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
+</head>
+<body>
+<div th:insert="fragments/menu :: menu">menu</div>
+
+<div class="container">
+    <div class="jumbotron">
+        <br><br><br>
+        <h1 class=text-success th:text="${jedenKontakt.jmeno}">Vikuňa</h1>
+        <h1 class=text-success th:text="${nadpis_novy}">Vikuňa</h1>
+        <br><br>
+        <form method="post">
+            <table>
+                <div class="form-group">
+                    <label for="jmeno">Jméno</label>
+                    <textarea class="form-control" name="jmeno" id="jmeno" th:placeholder="${jedenKontakt.jmeno}" th:value="${jedenKontakt.jmeno}" rows="1"></textarea>
+
+                    <label for="povolani">Povolání</label>
+                    <textarea class="form-control" name="povolani" id="povolani" th:placeholder="${jedenKontakt.povolani}" rows="1"></textarea>
+
+                    <label for="bydliste">Bydliště</label>
+                    <textarea class="form-control" name="bydliste" id="bydliste" th:placeholder="${jedenKontakt.bydliste}" rows="1"></textarea>
+
+                    <label for="email">Email</label>
+                    <textarea class="form-control" name="email" id="email" th:placeholder="${jedenKontakt.email}" rows="1"></textarea>
+
+                </div>
+                    <td>
+                        <input type="submit" value="Uložit" class="btn btn-outline-primary"/>
+                        <a th:href="@{'/seznam'}" href="index.html" class="btn btn-outline-danger">Zpět na seznam kontaktů</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <footer class="paticka">
+        <div>
+            <p th:insert="fragments/footer :: footer">Footer</p>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

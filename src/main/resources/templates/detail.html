@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="cs"
       xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,62 +15,44 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
     <link rel="shortcut icon" href="images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
 </head>
-
 <body>
-<div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" style="">
-    <div class="container">
-
-        <a class="navbar-brand">Generátor nizozemských jídel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://st3.czechitas.cikanek.net/ukol01/">Autorka</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.linkedin.com/in/burjanova/">LinkedIn</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<div th:insert="fragments/menu :: menu">menu</div>
 
 <div class="container">
     <div class="jumbotron">
         <br><br><br>
-        <h1>Detail článku</h1>
+        <img src="/images/carod.jpg" class="obrazek_pexesa" th:src="@{'/images/' + ${jedenKontakt.fotka}}"/>
 
-        <form method="post">
-            <table>
-                <tr>
-                    <td>Název:</td>
-                    <td>
-                        <input type="text" name="nazev" value="První článek" th:value="${jedenClanek.nazev}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Autor:</td>
-                    <td>
-                        <input type="text" name="autor" value="Lois Lane" th:value="${jedenClanek.autor}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <input type="submit" value="Uložit" class="ui-button"/>
-                    <a th:href="@{'/seznam'}" href="index.html" class="ui-button">Zpět</a>
-                    <td>
-                </tr>
-            </table>
-        </form>
+        <h1 class="text-info" th:text="${jedenKontakt.jmeno}">Opička Žofka</h1>
+        <br>
+        <ul>
+            <li>
+                <td>Povolani:</td>
+                <td th:text="${jedenKontakt.povolani}">Kovář</td>
+            </li>
+            <li>
+                <td>Bydliště:</td>
+                <td th:text="${jedenKontakt.bydliste}">Les</td>
+            </li>
 
+            <li>
+                <td>Email:</td>
+                <td th:text="${jedenKontakt.email}">kuk@post.cz</td>
+            </li>
+
+        </ul>
+        <br><br>
+
+        <a th:href="@{'/uprava/' + ${jedenKontakt.idKontaktu}}" href="uprava.html"
+           class="btn btn-outline-info">Upravit záznam</a>
+        <a th:href="@{'/seznam'}" href="index.html" class="btn btn-outline-danger">Zpět na seznam
+            kontaktů</a>
 
     </div>
     <footer class="paticka">
-        <br>
-        <p>@2020 Martina Burjanová, CSS by <a href="https://bootswatch.com/materia/">Materia Bootswatch</a></p>
+        <div>
+            <p th:insert="fragments/footer :: footer">Footer</p>
+        </div>
     </footer>
 </div>
 
