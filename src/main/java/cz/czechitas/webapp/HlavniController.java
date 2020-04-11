@@ -1,9 +1,12 @@
 package cz.czechitas.webapp;
 
 import org.springframework.stereotype.*;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +39,9 @@ public class HlavniController {
         return drzak;
     }
 
-    @RequestMapping(value = "/seznam/{idClanku}", method = RequestMethod.POST, params = "_method=DELETE")
-    public ModelAndView smazClanek(@PathVariable("idClanku") Long idClanku) {
-        smazClanekPodleCisla(idClanku);
+    @RequestMapping(value = "/seznam/{idKontaktu}", method = RequestMethod.POST, params = "_method=DELETE")
+    public ModelAndView smazKontakt(@PathVariable("idKontaktu") Long idKontaktu) {
+        smazKontaktPodleId(idKontaktu);
         return new ModelAndView("redirect:/seznam");
     }
 
@@ -73,13 +76,23 @@ public class HlavniController {
     }
 
     @RequestMapping(value = "/novy", method = RequestMethod.POST)
-    public ModelAndView zpracujNovy(DetailForm detailForm) {
-        ModelAndView drzak = new ModelAndView("uprava");
-        ulozClanek(detailForm);
-        return new ModelAndView("redirect:/seznam");
-    }
+    public ModelAndView zpracujNovy(@Valid @ModelAttribute("formular")  DetailForm detailForm,
+                                    BindingResult validacniChyby,
+                                    RedirectAttributes flashScope) {
+        if (validacniChyby.hasErrors()) {
+            ModelAndView data = new ModelAndView("redirect:/novy");
+            flashScope.addFlashAttribute("formular", detailForm);
+            flashScope.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "formular", validacniChyby);
+            return data;
+        }
 
-    private void ulozClanek(DetailForm detailform) {
+        ModelAndView drzak = new ModelAndView("novy");
+        ulozKontakt(detailForm);
+        return new ModelAndView("redirect:/seznam");
+
+        }   //konec request mapping novy POST
+
+    private void ulozKontakt(DetailForm detailform) {
         String jmeno = detailform.getJmeno();
         String povolani = detailform.getPovolani();
         String bydliste = detailform.getBydliste();
@@ -108,8 +121,8 @@ public class HlavniController {
         }
     }
 
-    private void smazClanekPodleCisla(Long idClanku) {
-        Kontakt kontakt = findById(idClanku);
+    private void smazKontaktPodleId(Long idKontaktu) {
+        Kontakt kontakt = findById(idKontaktu);
         seznamKontaktu.remove(kontakt);
     }
 
@@ -120,10 +133,7 @@ public class HlavniController {
             }
         }
         return null;
-
     }
-
-
 }
 
 
