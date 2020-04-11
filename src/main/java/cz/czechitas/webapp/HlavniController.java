@@ -83,6 +83,7 @@ public class HlavniController {
             ModelAndView data = new ModelAndView("redirect:/novy");
             flashScope.addFlashAttribute("formular", vstup);
             flashScope.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "formular", validacniChyby);
+            flashScope.addFlashAttribute("oprava_nutna", "Nezadali jste všechny odpovědi, doplňte to.");
             return data;
         }
 
