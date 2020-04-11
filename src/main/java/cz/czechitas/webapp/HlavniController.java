@@ -36,9 +36,9 @@ public class HlavniController {
         return drzak;
     }
 
-    @RequestMapping(value = "/seznam/{idClanku}", method = RequestMethod.POST, params = "_method=DELETE")
-    public ModelAndView smazClanek(@PathVariable("idClanku") Long idClanku) {
-        smazClanekPodleCisla(idClanku);
+    @RequestMapping(value = "/seznam/{idKontaktu}", method = RequestMethod.POST, params = "_method=DELETE")
+    public ModelAndView smazClanek(@PathVariable("idKontaktu") Long idKontaktu) {
+        smazKontaktPodleId(idKontaktu);
         return new ModelAndView("redirect:/seznam");
     }
 
@@ -108,8 +108,8 @@ public class HlavniController {
         }
     }
 
-    private void smazClanekPodleCisla(Long idClanku) {
-        Kontakt kontakt = findById(idClanku);
+    private void smazKontaktPodleId(Long idKontaktu) {
+        Kontakt kontakt = findById(idKontaktu);
         seznamKontaktu.remove(kontakt);
     }
 
