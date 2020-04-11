@@ -30,7 +30,6 @@
     <div class="jumbotron">
         <br><br><br>
         <h1 class="text-primary">Pohádkové kontakty</h1><br>
-
         <table class="table table-hover">
             <tr class="table-primary">
                 <th>Jméno</th>
@@ -39,24 +38,36 @@
                 <th>Email</th>
                 <th></th>
                 <th></th>
+            </tr>
+            <!-- <tr th:each="element : ${parameters}">
+                 <td th:text="${element.key}">keyvalue</td>
+                 <table>
+                     <tr th:each="elementSingle : ${element.value}">
+                         <td th:text="${elementSingle.name}">Some name</td>
+                         <td th:text="${elementSingle.description}">Description</td>
+                     </tr>
+                 </table>
+             </tr>-->
+            <th:block th:each="item : ${seznamKontaktu}">
 
-            </tr>
-            <tr th:each="jedenKontakt : ${seznamKontaktu}">
-                <td th:text="${jedenKontakt.jmeno}">Cipísek</td>
-                <td th:text="${jedenKontakt.povolani}">Syn loupežníka</td>
-                <td th:text="${jedenKontakt.bydliste}">Řáholec</td>
-                <td th:text="${jedenKontakt.email}">jhdsagf@vikuna.cz</td>
-                <td>
-                    <a th:href="@{'/detail/' + ${jedenKontakt.idKontaktu}}" href="detail.html"
-                       class="btn btn-outline-info">Detail</a>
-                </td>
-                <td>
-                    <form th:action="@{'/seznam/' + ${jedenKontakt.idKontaktu}}" method="post">
-                        <input type="hidden" name="_method" value="DELETE"/>
-                        <input type="submit" value="Smazat" class="btn btn-outline-danger"/>
-                    </form>
-                </td>
-            </tr>
+                <tr th:each="jedenKontakt : ${item.value}">
+                    <td th:text="${jedenKontakt.jmeno}">Cipísek</td>
+                    <td th:text="${jedenKontakt.povolani}">Syn loupežníka</td>
+                    <td th:text="${jedenKontakt.bydliste}">Řáholec</td>
+                    <td th:text="${jedenKontakt.email}">jhdsagf@vikuna.cz</td>
+
+                    <td>
+                        <a th:href="@{'/detail/' + ${item.key}}" href="detail.html"
+                           class="btn btn-outline-info">Detail</a>
+                    </td>
+                    <td>
+                        <form th:action="@{'/seznam/' + ${item.key}}" method="post">
+                            <input type="hidden" name="_method" value="DELETE"/>
+                            <input type="submit" value="Smazat" class="btn btn-outline-danger"/>
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
         </table>
         <a th:href="@{'/novy'}" href="detail.html" class="btn btn-outline-success">Zadat nový kontakt</a>
     </div>

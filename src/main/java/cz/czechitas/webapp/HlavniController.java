@@ -40,7 +40,7 @@ public class HlavniController {
         ModelAndView drzak = new ModelAndView("index");
         System.out.println(mapaKontaktu.values());
         System.out.println(mapaKontaktu.toString());
-        drzak.addObject("seznamKontaktu", mapaKontaktu.values());
+        drzak.addObject("seznamKontaktu", mapaKontaktu);
         //drzak.addObject("seznamKontaktu", seznamKontaktu);
         return drzak;
     }
