@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cs"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="My lovely web page"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content="java, web"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Generátor</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i&amp;subset=latin-ext"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
+    <link rel="shortcut icon" href="images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
+    <!--/*@thymesVar id="jmeno" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="povolenai" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="bydliste" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="email" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="idKontaktu" type="java.lang.Long"*/-->
+
+
+</head>
+<body>
+<div th:insert="fragments/menu :: menu">menu</div>
+
+<div class="container">
+    <div class="jumbotron">
+        <br><br><br>
+        <h1 class="text-primary">Pohádkové kontakty</h1><br>
+
+        <table class="table table-hover">
+            <tr class="table-primary">
+                <th>Jméno</th>
+                <th>Povolání</th>
+                <th>Bydliště</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            <tr th:each="jedenKontakt : ${seznamKontaktu}">
+                <td th:text="${jedenKontakt.jmeno}">Cipísek</td>
+                <td th:text="${jedenKontakt.povolani}">Syn loupežníka</td>
+                <td th:text="${jedenKontakt.bydliste}">Řáholec</td>
+                <td th:text="${jedenKontakt.email}">jhdsagf@vikuna.cz</td>
+                <td>
+                    <a th:href="@{'/detail/' + ${jedenKontakt.idKontaktu}}" href="detail.html"
+                       class="btn btn-outline-info">Detail</a>
+                </td>
+                <td>
+                    <form th:action="@{'/seznam/' + ${jedenKontakt.idKontaktu}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE"/>
+                        <input type="submit" value="Smazat" class="btn btn-outline-danger"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <a th:href="@{'/novy'}" href="detail.html" class="btn btn-outline-success">Zadat nový kontakt</a>
+    </div>
+    <footer class="paticka">
+        <div>
+            <p th:insert="fragments/footer :: footer">Footer</p>
+        </div>
+    </footer>
+
+</div>
+</body>
+
+</html>

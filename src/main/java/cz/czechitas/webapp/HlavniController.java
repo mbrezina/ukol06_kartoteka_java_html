@@ -4,16 +4,82 @@ import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class HlavniController {
 
     Long sekvence = 1000L;
+    Long nova_sekvence = 1000L;
+    private Map<Long, Kontakt> mapaKontaktu = new Map<Long, Kontakt>() {
+
+        @Override
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
+        public boolean containsKey(Object o) {
+            return false;
+        }
+
+        @Override
+        public boolean containsValue(Object o) {
+            return false;
+        }
+
+        @Override
+        public Kontakt get(Object o) {
+            return null;
+        }
+
+        @Override
+        public Kontakt put(Long aLong, Kontakt kontakt) {
+            return null;
+        }
+
+        @Override
+        public Kontakt remove(Object o) {
+            return null;
+        }
+
+        @Override
+        public void putAll(Map<? extends Long, ? extends Kontakt> map) {
+
+        }
+
+        @Override
+        public void clear() {
+
+        }
+
+        @Override
+        public Set<Long> keySet() {
+            return null;
+        }
+
+        @Override
+        public Collection<Kontakt> values() {
+            return null;
+        }
+
+        @Override
+        public Set<Entry<Long, Kontakt>> entrySet() {
+            return null;
+        }
+    };
+
     private List<Kontakt> seznamKontaktu;
 
     public HlavniController() {
+        mapaKontaktu.put(nova_sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(nova_sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+
         seznamKontaktu = new ArrayList<Kontakt>();
         seznamKontaktu.add(new Kontakt(sekvence++, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
         seznamKontaktu.add(new Kontakt(sekvence++, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
@@ -32,7 +98,8 @@ public class HlavniController {
     @RequestMapping(value = "/seznam", method = RequestMethod.GET)
     public ModelAndView zobrazSeznam() {
         ModelAndView drzak = new ModelAndView("index");
-        drzak.addObject("seznamKontaktu", seznamKontaktu);
+        drzak.addObject("seznamKontaktu", mapaKontaktu.values());
+        //drzak.addObject("seznamKontaktu", seznamKontaktu);
         return drzak;
     }
 
@@ -45,7 +112,8 @@ public class HlavniController {
     @RequestMapping(value = "/detail/{idKontaktu:[0-9]+}", method = RequestMethod.GET)
     public ModelAndView zobrazDetail(@PathVariable Long idKontaktu) {
         ModelAndView drzak = new ModelAndView("detail");
-        Kontakt jeden = findById(idKontaktu);
+        Kontakt jeden = ziskejKontakt(idKontaktu);
+        //Kontakt jeden = findById(idKontaktu);
         drzak.addObject("jedenKontakt", jeden);
         return drzak;
     }
@@ -53,7 +121,8 @@ public class HlavniController {
     @RequestMapping(value = "/uprava/{idKontaktu:[0-9]+}", method = RequestMethod.GET)
     public ModelAndView UmozniUpravu(@PathVariable Long idKontaktu) {
         ModelAndView drzak = new ModelAndView("uprava");
-        Kontakt jeden = findById(idKontaktu);
+        Kontakt jeden = ziskejKontakt(idKontaktu);
+        //Kontakt jeden = findById(idKontaktu);
         drzak.addObject("jedenKontakt", jeden);
         drzak.addObject("zadani", "Zde můžete upravit pohádkovou postavu");
         return drzak;
@@ -75,22 +144,23 @@ public class HlavniController {
     @RequestMapping(value = "/novy", method = RequestMethod.POST)
     public ModelAndView zpracujNovy(DetailForm detailForm) {
         ModelAndView drzak = new ModelAndView("uprava");
-        ulozClanek(detailForm);
+        ulozKontakt(detailForm);
         return new ModelAndView("redirect:/seznam");
     }
 
-    private void ulozClanek(DetailForm detailform) {
+    private void ulozKontakt(DetailForm detailform) {
         String jmeno = detailform.getJmeno();
         String povolani = detailform.getPovolani();
         String bydliste = detailform.getBydliste();
         String email = detailform.getEmail();
         String fotka = detailform.getFotka();
-        Kontakt novykontakt = new Kontakt(sekvence++, jmeno, povolani, bydliste, email, fotka);
-        seznamKontaktu.add(novykontakt);
+        Kontakt novykontakt = new Kontakt(sekvence, jmeno, povolani, bydliste, email, fotka);
+        mapaKontaktu.put(sekvence++, novykontakt);
+        //seznamKontaktu.add(novykontakt);
     }
 
     private void upravKontakt(Long idKontaktu, DetailForm detailForm) {
-        Kontakt upravovanyKontakt = findById(idKontaktu);
+        Kontakt upravovanyKontakt = ziskejKontakt(idKontaktu);
         if (!detailForm.getFotka().isEmpty()) {
             upravovanyKontakt.setFotka(detailForm.getFotka());
         }
@@ -109,8 +179,14 @@ public class HlavniController {
     }
 
     private void smazKontaktPodleId(Long idKontaktu) {
-        Kontakt kontakt = findById(idKontaktu);
-        seznamKontaktu.remove(kontakt);
+        Kontakt kontakt = ziskejKontakt(idKontaktu);
+        //Kontakt kontakt = findById(idKontaktu);
+        mapaKontaktu.remove(idKontaktu);
+        //seznamKontaktu.remove(kontakt);
+    }
+
+    private Kontakt ziskejKontakt(Long idKontaktu) {
+        return mapaKontaktu.get(idKontaktu);
     }
 
     private Kontakt findById(Long idHledanehoKontaktu) {
