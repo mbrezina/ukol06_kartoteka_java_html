@@ -11,72 +11,12 @@ public class HlavniController {
 
     Long sekvence = 1000L;
     Long nova_sekvence = 1000L;
-    private Map<Long, Kontakt> mapaKontaktu = new Map<Long, Kontakt>() {
-
-        @Override
-        public int size() {
-            return 0;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return false;
-        }
-
-        @Override
-        public boolean containsKey(Object o) {
-            return false;
-        }
-
-        @Override
-        public boolean containsValue(Object o) {
-            return false;
-        }
-
-        @Override
-        public Kontakt get(Object o) {
-            return null;
-        }
-
-        @Override
-        public Kontakt put(Long aLong, Kontakt kontakt) {
-            return null;
-        }
-
-        @Override
-        public Kontakt remove(Object o) {
-            return null;
-        }
-
-        @Override
-        public void putAll(Map<? extends Long, ? extends Kontakt> map) {
-
-        }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @Override
-        public Set<Long> keySet() {
-            return null;
-        }
-
-        @Override
-        public Collection<Kontakt> values() {
-            return null;
-        }
-
-        @Override
-        public Set<Entry<Long, Kontakt>> entrySet() {
-            return null;
-        }
-    };
+    private Map<Long, Kontakt> mapaKontaktu;
 
     private List<Kontakt> seznamKontaktu;
 
     public HlavniController() {
+        mapaKontaktu = new TreeMap<Long, Kontakt>();
         mapaKontaktu.put(nova_sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
         mapaKontaktu.put(nova_sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
 
@@ -98,6 +38,8 @@ public class HlavniController {
     @RequestMapping(value = "/seznam", method = RequestMethod.GET)
     public ModelAndView zobrazSeznam() {
         ModelAndView drzak = new ModelAndView("index");
+        System.out.println(mapaKontaktu.values());
+        System.out.println(mapaKontaktu.toString());
         drzak.addObject("seznamKontaktu", mapaKontaktu.values());
         //drzak.addObject("seznamKontaktu", seznamKontaktu);
         return drzak;
