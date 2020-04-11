@@ -76,18 +76,18 @@ public class HlavniController {
     }
 
     @RequestMapping(value = "/novy", method = RequestMethod.POST)
-    public ModelAndView zpracujNovy(@Valid @ModelAttribute("formular")  DetailForm detailForm,
+    public ModelAndView zpracujNovy(@Valid @ModelAttribute("formular") DetailForm vstup,
                                     BindingResult validacniChyby,
                                     RedirectAttributes flashScope) {
         if (validacniChyby.hasErrors()) {
             ModelAndView data = new ModelAndView("redirect:/novy");
-            flashScope.addFlashAttribute("formular", detailForm);
+            flashScope.addFlashAttribute("formular", vstup);
             flashScope.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "formular", validacniChyby);
             return data;
         }
 
         ModelAndView drzak = new ModelAndView("novy");
-        ulozKontakt(detailForm);
+        ulozKontakt(vstup);
         return new ModelAndView("redirect:/seznam");
 
         }   //konec request mapping novy POST
