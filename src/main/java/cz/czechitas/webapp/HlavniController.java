@@ -81,13 +81,13 @@ public class HlavniController {
         mapaKontaktu.put(nova_sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
 
         seznamKontaktu = new ArrayList<Kontakt>();
-        seznamKontaktu.add(new Kontakt(sekvence++, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        //seznamKontaktu.add(new Kontakt(sekvence++, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        //seznamKontaktu.add(new Kontakt(sekvence++, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        //seznamKontaktu.add(new Kontakt(sekvence++, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        //seznamKontaktu.add(new Kontakt(sekvence++, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        //seznamKontaktu.add(new Kontakt(sekvence++, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        //seznamKontaktu.add(new Kontakt(sekvence++, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        //seznamKontaktu.add(new Kontakt(sekvence++, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -154,8 +154,9 @@ public class HlavniController {
         String bydliste = detailform.getBydliste();
         String email = detailform.getEmail();
         String fotka = detailform.getFotka();
-        Kontakt novykontakt = new Kontakt(sekvence, jmeno, povolani, bydliste, email, fotka);
-        mapaKontaktu.put(sekvence++, novykontakt);
+        Kontakt novyKontakt = new Kontakt(jmeno, povolani, bydliste, email, fotka);
+        //Kontakt novyKontakt = new Kontakt(sekvence, jmeno, povolani, bydliste, email, fotka);
+        mapaKontaktu.put(sekvence++, novyKontakt);
         //seznamKontaktu.add(novykontakt);
     }
 
@@ -189,15 +190,15 @@ public class HlavniController {
         return mapaKontaktu.get(idKontaktu);
     }
 
-    private Kontakt findById(Long idHledanehoKontaktu) {
-        for (Kontakt kontakt : seznamKontaktu) {
-            if (kontakt.getIdKontaktu().equals(idHledanehoKontaktu)) {
-                return kontakt;
-            }
-        }
-        return null;
+    //private Kontakt findById(Long idHledanehoKontaktu) {
+    //    for (Kontakt kontakt : seznamKontaktu) {
+    //        if (kontakt.getIdKontaktu().equals(idHledanehoKontaktu)) {
+     //           return kontakt;
+    //        }
+    //    }
+    //    return null;
 
-    }
+    //}
 
 
 }
