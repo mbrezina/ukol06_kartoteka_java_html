@@ -22,7 +22,9 @@
     <div class="jumbotron">
         <br><br><br>
         <h1 class=text-success>Zadejte novou pohádkovou postavu</h1>
-        <br><br>
+        <br>
+        <h2 class=text-danger th:text="${oprava_nutna}"></h2>
+        <br>
         <form method="post">
             <table class="table table-hover">
 
@@ -47,36 +49,35 @@
                 </tr>
                 <tr>
                     <td style="text-align:center">
-                        <input name="fotka" type="radio" value="carod.jpg" th:value="${jedenKontakt.fotka}"  checked=""/>
+                        <input name="fotka" type="radio" value="carod.jpg" checked=""
+                               th:checked="${formular.fotka=='carod.jpg'}"/>
                     </td>
                     <td style="text-align:center">
-                        <input name="fotka" type="radio" value="mak.jpg"/>
+                        <input name="fotka" type="radio" value="mak.jpg" th:checked="${formular.fotka=='mak.jpg'}"/>
                     </td>
                     <td style="text-align:center">
-                        <input name="fotka" type="radio" value="rakos.jpg" />
+                        <input name="fotka" type="radio" value="rakos.jpg" th:checked="${formular.fotka=='rakos.jpg'}"/>
                     </td>
                     <td style="text-align:center">
-                        <input name="fotka" type="radio" value="staf.jpg" />
+                        <input name="fotka" type="radio" value="staf.jpg" th:checked="${formular.fotka=='staf.jpg'}"/>
                     </td>
                 </tr>
             </table>
 
             <div class="form-group">
                 <label for="jmeno">Jméno</label>
-                <textarea class="form-control" name="jmeno" id="jmeno" th:placeholder="${jedenKontakt.jmeno}"
-                          th:value="${jedenKontakt.jmeno}" rows="1"></textarea>
+                <textarea class="form-control" name="jmeno" id="jmeno" th:text="${formular.jmeno}" rows="1"></textarea>
 
                 <label for="povolani">Povolání</label>
-                <textarea class="form-control" name="povolani" id="povolani"
-                          th:placeholder="${jedenKontakt.povolani}" rows="1"></textarea>
+                <textarea class="form-control" name="povolani" id="povolani" th:text="${formular.povolani}"
+                          rows="1"></textarea>
 
                 <label for="bydliste">Bydliště</label>
-                <textarea class="form-control" name="bydliste" id="bydliste"
-                          th:placeholder="${jedenKontakt.bydliste}" rows="1"></textarea>
+                <textarea class="form-control" name="bydliste" id="bydliste" th:text="${formular.bydliste}"
+                          rows="1"></textarea>
 
                 <label for="email">Email</label>
-                <textarea class="form-control" name="email" id="email" th:placeholder="${jedenKontakt.email}"
-                          rows="1"></textarea>
+                <textarea class="form-control" name="email" id="email" th:text="${formular.email}" rows="1"></textarea>
 
             </div>
             <td>

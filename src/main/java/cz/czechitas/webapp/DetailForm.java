@@ -1,9 +1,15 @@
 package cz.czechitas.webapp;
 
+import javax.validation.constraints.Pattern;
+
 public class DetailForm {
+    @Pattern(regexp = "[a-zA-Zá-žÁ-Ž]+", message = "Jméno je povinné, používejte pouze písmena české abecedy")
     private String jmeno;
+    @Pattern(regexp = "[a-zA-Zá-žÁ-Ž]+", message = "Jméno je povinné, používejte pouze písmena české abecedy")
     private String bydliste;
+    @Pattern(regexp = "[a-zA-Zá-žÁ-Ž]+", message = "Jméno je povinné, používejte pouze písmena české abecedy")
     private String povolani;
+    @Pattern(regexp = "^(.+)@(.+)$", message = "Jméno je povinné, používejte pouze písmena české abecedy")
     private String email;
     private String fotka;
 
