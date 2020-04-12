@@ -71,7 +71,7 @@ public class HlavniController {
     @RequestMapping(value = "/novy", method = RequestMethod.GET)
     public ModelAndView zobrazNovy() {
         ModelAndView drzak = new ModelAndView("novy");
-        drzak.addObject("jedenKontakt", new DetailForm());
+        drzak.addObject("formular", new DetailForm());
         return drzak;
     }
 

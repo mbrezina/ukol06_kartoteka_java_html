@@ -30,7 +30,6 @@
                     <td height="100">
                         <img src="../static/images/carod.jpg" th:src="@{'/images/carod.jpg'}" class="obrazek_pexesa"
                              alt="zviřátko"/>
-
                     </td>
                     <td height="100">
                         <img src="../static/images/mak.jpg" th:src="@{'/images/mak.jpg'}" class="obrazek_pexesa"
@@ -47,7 +46,7 @@
                 </tr>
                 <tr>
                     <td style="text-align:center">
-                        <input name="fotka" type="radio" value="carod.jpg" th:value="${jedenKontakt.fotka}"  checked=""/>
+                        <input name="fotka" type="radio" value="carod.jpg" checked=""/>
                     </td>
                     <td style="text-align:center">
                         <input name="fotka" type="radio" value="mak.jpg"/>
@@ -62,21 +61,39 @@
             </table>
 
             <div class="form-group">
-                <label for="jmeno">Jméno</label>
-                <textarea class="form-control" name="jmeno" id="jmeno" th:placeholder="${jedenKontakt.jmeno}"
-                          th:value="${jedenKontakt.jmeno}" rows="1"></textarea>
+
+                <label for="jmeno">Jméno:</label>
+                <textarea class="form-control" name="jmeno" id="jmeno" th:text="${formular.jmeno}"
+                          rows="1">tady</textarea>
+
+                <label for="povolani">Povolání:</label>
+                <textarea class="form-control" name="povolani" id="povolani" th:text="${formular.povolani}"
+                          rows="1">tady</textarea>
+
+                <label for="bydliste">Bydliště:</label>
+                <textarea class="form-control" name="bydliste" id="bydliste" th:text="${formular.bydliste}"
+                          rows="1"></textarea>
+
+                <label for="email">Email:</label>
+                <textarea class="form-control" name="email" id="email" th:text="${formular.email}"
+                          rows="1"></textarea>
+
+
+                <!--<label for="jmeno">Jméno</label>
+                <textarea class="form-control" name="jmeno" id="jmeno" th:text="${formular.jmeno!=null? formular.jmeno : ''}"
+                          rows="1"></textarea>
 
                 <label for="povolani">Povolání</label>
-                <textarea class="form-control" name="povolani" id="povolani"
-                          th:placeholder="${jedenKontakt.povolani}" rows="1"></textarea>
+                <textarea class="form-control" name="povolani" id="povolani" th:text="${formular.povolani!=null? formular.povolani : ''}"
+                          rows="1"></textarea>
 
                 <label for="bydliste">Bydliště</label>
-                <textarea class="form-control" name="bydliste" id="bydliste"
-                          th:placeholder="${jedenKontakt.bydliste}" rows="1"></textarea>
+                <textarea class="form-control" name="bydliste" id="bydliste" th:text="${formular.bydliste!=null? formular.bydliste : ''}"
+                          rows="1"></textarea>
 
                 <label for="email">Email</label>
-                <textarea class="form-control" name="email" id="email" th:placeholder="${jedenKontakt.email}"
-                          rows="1"></textarea>
+                <textarea class="form-control" name="email" id="email" th:text="${formular.email!=null? formular.email : ''}"
+                          rows="1"></textarea>-->
 
             </div>
             <td>
