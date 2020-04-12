@@ -10,24 +10,32 @@ import java.util.*;
 public class HlavniController {
 
     Long sekvence = 1000L;
-    Long nova_sekvence = 1000L;
     private Map<Long, Kontakt> mapaKontaktu;
-
-    private List<Kontakt> seznamKontaktu;
 
     public HlavniController() {
         mapaKontaktu = new TreeMap<Long, Kontakt>();
-        mapaKontaktu.put(nova_sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
-        mapaKontaktu.put(nova_sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
 
-        seznamKontaktu = new ArrayList<Kontakt>();
-        //seznamKontaktu.add(new Kontakt(sekvence++, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
-        //seznamKontaktu.add(new Kontakt(sekvence++, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
-        //seznamKontaktu.add(new Kontakt(sekvence++, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
-        //seznamKontaktu.add(new Kontakt(sekvence++, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
-        //seznamKontaktu.add(new Kontakt(sekvence++, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
-        //seznamKontaktu.add(new Kontakt(sekvence++, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
-        //seznamKontaktu.add(new Kontakt(sekvence++, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -38,15 +46,17 @@ public class HlavniController {
     @RequestMapping(value = "/seznam", method = RequestMethod.GET)
     public ModelAndView zobrazSeznam() {
         ModelAndView drzak = new ModelAndView("index");
-        System.out.println(mapaKontaktu.values());
-        System.out.println(mapaKontaktu.toString());
+        if (mapaKontaktu.size() == 0) {
+            drzak.addObject("hlaseni", "V seznamu není žádný kontakt, zkuste si nějaký vytvořit");
+        }
         drzak.addObject("seznamKontaktu", mapaKontaktu);
-        //drzak.addObject("seznamKontaktu", seznamKontaktu);
         return drzak;
     }
 
     @RequestMapping(value = "/seznam/{idKontaktu}", method = RequestMethod.POST, params = "_method=DELETE")
     public ModelAndView smazClanek(@PathVariable("idKontaktu") Long idKontaktu) {
+
+
         smazKontaktPodleId(idKontaktu);
         return new ModelAndView("redirect:/seznam");
     }
@@ -54,9 +64,9 @@ public class HlavniController {
     @RequestMapping(value = "/detail/{idKontaktu:[0-9]+}", method = RequestMethod.GET)
     public ModelAndView zobrazDetail(@PathVariable Long idKontaktu) {
         ModelAndView drzak = new ModelAndView("detail");
-        Kontakt jeden = ziskejKontakt(idKontaktu);
-        //Kontakt jeden = findById(idKontaktu);
+        Kontakt jeden = mapaKontaktu.get(idKontaktu);
         drzak.addObject("jedenKontakt", jeden);
+        drzak.addObject("idKontaktu", idKontaktu);
         return drzak;
     }
 
@@ -86,7 +96,7 @@ public class HlavniController {
     @RequestMapping(value = "/novy", method = RequestMethod.POST)
     public ModelAndView zpracujNovy(DetailForm detailForm) {
         ModelAndView drzak = new ModelAndView("uprava");
-        ulozKontakt(detailForm);
+        ulozKontakt(detailForm); //ok metoda
         return new ModelAndView("redirect:/seznam");
     }
 
@@ -103,7 +113,8 @@ public class HlavniController {
     }
 
     private void upravKontakt(Long idKontaktu, DetailForm detailForm) {
-        Kontakt upravovanyKontakt = ziskejKontakt(idKontaktu);
+        Kontakt upravovanyKontakt = mapaKontaktu.get(idKontaktu);
+        //Kontakt upravovanyKontakt = ziskejKontakt(idKontaktu);
         if (!detailForm.getFotka().isEmpty()) {
             upravovanyKontakt.setFotka(detailForm.getFotka());
         }
@@ -135,7 +146,7 @@ public class HlavniController {
     //private Kontakt findById(Long idHledanehoKontaktu) {
     //    for (Kontakt kontakt : seznamKontaktu) {
     //        if (kontakt.getIdKontaktu().equals(idHledanehoKontaktu)) {
-     //           return kontakt;
+    //           return kontakt;
     //        }
     //    }
     //    return null;

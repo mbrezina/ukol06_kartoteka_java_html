@@ -21,6 +21,7 @@
 <div class="container">
     <div class="jumbotron">
         <br><br><br>
+
         <img src="/images/carod.jpg" class="obrazek_kartoteka" th:src="@{'/images/' + ${jedenKontakt.fotka}}"/>
 
         <h1 class="text-primary" th:text="${jedenKontakt.jmeno}">Opička Žofka</h1>
@@ -34,7 +35,6 @@
                 <td>Bydliště:</td>
                 <td th:text="${jedenKontakt.bydliste}">Les</td>
             </li>
-
             <li>
                 <td>Email:</td>
                 <td th:text="${jedenKontakt.email}">kuk@post.cz</td>
@@ -43,7 +43,7 @@
         </ul>
         <br><br>
 
-        <a th:href="@{'/uprava/' + ${jedenKontakt.idKontaktu}}" href="uprava.html"
+        <a th:href="@{'/uprava/' + ${idKontaktu}}" href="uprava.html"
            class="btn btn-outline-info">Upravit záznam</a>
         <a th:href="@{'/seznam'}" href="index_zaloha.html" class="btn btn-outline-danger">Zpět na seznam
             kontaktů</a>

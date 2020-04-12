@@ -30,6 +30,8 @@
     <div class="jumbotron">
         <br><br><br>
         <h1 class="text-primary">Pohádkové kontakty</h1><br>
+        <h2 class="text-danger" th:text="${hlaseni}"></h2><br>
+
         <table class="table table-hover">
             <tr class="table-primary">
                 <th>Jméno</th>
@@ -39,17 +41,7 @@
                 <th></th>
                 <th></th>
             </tr>
-            <!-- <tr th:each="element : ${parameters}">
-                 <td th:text="${element.key}">keyvalue</td>
-                 <table>
-                     <tr th:each="elementSingle : ${element.value}">
-                         <td th:text="${elementSingle.name}">Some name</td>
-                         <td th:text="${elementSingle.description}">Description</td>
-                     </tr>
-                 </table>
-             </tr>-->
             <th:block th:each="item : ${seznamKontaktu}">
-
                 <tr th:each="jedenKontakt : ${item.value}">
                     <td th:text="${jedenKontakt.jmeno}">Cipísek</td>
                     <td th:text="${jedenKontakt.povolani}">Syn loupežníka</td>
