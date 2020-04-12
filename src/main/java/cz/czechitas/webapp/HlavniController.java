@@ -4,24 +4,38 @@ import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class HlavniController {
 
     Long sekvence = 1000L;
-    private List<Kontakt> seznamKontaktu;
+    private Map<Long, Kontakt> mapaKontaktu;
 
     public HlavniController() {
-        seznamKontaktu = new ArrayList<Kontakt>();
-        seznamKontaktu.add(new Kontakt(sekvence++, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
-        seznamKontaktu.add(new Kontakt(sekvence++, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        mapaKontaktu = new TreeMap<Long, Kontakt>();
+        mapaKontaktu.put(sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(sekvence++, new Kontakt("Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -32,12 +46,17 @@ public class HlavniController {
     @RequestMapping(value = "/seznam", method = RequestMethod.GET)
     public ModelAndView zobrazSeznam() {
         ModelAndView drzak = new ModelAndView("index");
-        drzak.addObject("seznamKontaktu", seznamKontaktu);
+        if (mapaKontaktu.size() == 0) {
+            drzak.addObject("hlaseni", "V seznamu není žádný kontakt, zkuste si nějaký vytvořit");
+        }
+        drzak.addObject("seznamKontaktu", mapaKontaktu);
         return drzak;
     }
 
     @RequestMapping(value = "/seznam/{idKontaktu}", method = RequestMethod.POST, params = "_method=DELETE")
     public ModelAndView smazClanek(@PathVariable("idKontaktu") Long idKontaktu) {
+
+
         smazKontaktPodleId(idKontaktu);
         return new ModelAndView("redirect:/seznam");
     }
@@ -45,15 +64,17 @@ public class HlavniController {
     @RequestMapping(value = "/detail/{idKontaktu:[0-9]+}", method = RequestMethod.GET)
     public ModelAndView zobrazDetail(@PathVariable Long idKontaktu) {
         ModelAndView drzak = new ModelAndView("detail");
-        Kontakt jeden = findById(idKontaktu);
+        Kontakt jeden = mapaKontaktu.get(idKontaktu);
         drzak.addObject("jedenKontakt", jeden);
+        drzak.addObject("idKontaktu", idKontaktu);
         return drzak;
     }
 
     @RequestMapping(value = "/uprava/{idKontaktu:[0-9]+}", method = RequestMethod.GET)
     public ModelAndView UmozniUpravu(@PathVariable Long idKontaktu) {
         ModelAndView drzak = new ModelAndView("uprava");
-        Kontakt jeden = findById(idKontaktu);
+        Kontakt jeden = ziskejKontakt(idKontaktu);
+        //Kontakt jeden = findById(idKontaktu);
         drzak.addObject("jedenKontakt", jeden);
         drzak.addObject("zadani", "Zde můžete upravit pohádkovou postavu");
         return drzak;
@@ -75,22 +96,25 @@ public class HlavniController {
     @RequestMapping(value = "/novy", method = RequestMethod.POST)
     public ModelAndView zpracujNovy(DetailForm detailForm) {
         ModelAndView drzak = new ModelAndView("uprava");
-        ulozClanek(detailForm);
+        ulozKontakt(detailForm); //ok metoda
         return new ModelAndView("redirect:/seznam");
     }
 
-    private void ulozClanek(DetailForm detailform) {
+    private void ulozKontakt(DetailForm detailform) {
         String jmeno = detailform.getJmeno();
         String povolani = detailform.getPovolani();
         String bydliste = detailform.getBydliste();
         String email = detailform.getEmail();
         String fotka = detailform.getFotka();
-        Kontakt novykontakt = new Kontakt(sekvence++, jmeno, povolani, bydliste, email, fotka);
-        seznamKontaktu.add(novykontakt);
+        Kontakt novyKontakt = new Kontakt(jmeno, povolani, bydliste, email, fotka);
+        //Kontakt novyKontakt = new Kontakt(sekvence, jmeno, povolani, bydliste, email, fotka);
+        mapaKontaktu.put(sekvence++, novyKontakt);
+        //seznamKontaktu.add(novykontakt);
     }
 
     private void upravKontakt(Long idKontaktu, DetailForm detailForm) {
-        Kontakt upravovanyKontakt = findById(idKontaktu);
+        Kontakt upravovanyKontakt = mapaKontaktu.get(idKontaktu);
+        //Kontakt upravovanyKontakt = ziskejKontakt(idKontaktu);
         if (!detailForm.getFotka().isEmpty()) {
             upravovanyKontakt.setFotka(detailForm.getFotka());
         }
@@ -109,19 +133,25 @@ public class HlavniController {
     }
 
     private void smazKontaktPodleId(Long idKontaktu) {
-        Kontakt kontakt = findById(idKontaktu);
-        seznamKontaktu.remove(kontakt);
+        Kontakt kontakt = ziskejKontakt(idKontaktu);
+        //Kontakt kontakt = findById(idKontaktu);
+        mapaKontaktu.remove(idKontaktu);
+        //seznamKontaktu.remove(kontakt);
     }
 
-    private Kontakt findById(Long idHledanehoKontaktu) {
-        for (Kontakt kontakt : seznamKontaktu) {
-            if (kontakt.getIdKontaktu().equals(idHledanehoKontaktu)) {
-                return kontakt;
-            }
-        }
-        return null;
-
+    private Kontakt ziskejKontakt(Long idKontaktu) {
+        return mapaKontaktu.get(idKontaktu);
     }
+
+    //private Kontakt findById(Long idHledanehoKontaktu) {
+    //    for (Kontakt kontakt : seznamKontaktu) {
+    //        if (kontakt.getIdKontaktu().equals(idHledanehoKontaktu)) {
+    //           return kontakt;
+    //        }
+    //    }
+    //    return null;
+
+    //}
 
 
 }
