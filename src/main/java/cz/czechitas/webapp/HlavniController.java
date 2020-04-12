@@ -88,9 +88,7 @@ public class HlavniController {
 
     @RequestMapping(value = "/novy", method = RequestMethod.GET)
     public String zobrazNovy(ModelMap predvyplnenyDrzakNaData) {
-        //ModelAndView drzak = new ModelAndView("novy");
         predvyplnenyDrzakNaData.putIfAbsent("formular", new DetailForm());
-        //drzak.addObject("jedenKontakt", new DetailForm());
         return "novy";
     }
 
@@ -102,7 +100,7 @@ public class HlavniController {
             ModelAndView data = new ModelAndView("redirect:/novy");
             flashScope.addFlashAttribute("formular", detailForm);
             flashScope.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "formular", validacniChyby);
-            flashScope.addFlashAttribute("oprava_nutna", "Nezadali jste všechny položky kontaktu, doplňte to.");
+            flashScope.addFlashAttribute("oprava_nutna", "Nezadali jste všechny položky kontaktu, doplňte to, povolené jsou znaky české abecedy, v emailu i speciální znaky.");
             return data;
         }
         ModelAndView drzak = new ModelAndView("novy");
@@ -139,5 +137,4 @@ public class HlavniController {
             upravovanyKontakt.setEmail(detailForm.getEmail());
         }
     }
-
 }

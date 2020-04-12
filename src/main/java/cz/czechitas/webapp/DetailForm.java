@@ -9,7 +9,7 @@ public class DetailForm {
     private String bydliste;
     @Pattern(regexp = "[a-zA-Zá-žÁ-Ž]+", message = "Jméno je povinné, používejte pouze písmena české abecedy")
     private String povolani;
-    @Pattern(regexp = "[a-zA-Zá-žÁ-Ž]+", message = "Jméno je povinné, používejte pouze písmena české abecedy")
+    @Pattern(regexp = "^(.+)@(.+)$", message = "Jméno je povinné, používejte pouze písmena české abecedy")
     private String email;
     private String fotka;
 
