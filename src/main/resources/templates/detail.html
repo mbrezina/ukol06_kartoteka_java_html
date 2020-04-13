@@ -12,8 +12,8 @@
     <title>Generátor</title>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i&amp;subset=latin-ext"
           rel="stylesheet"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
-    <link rel="shortcut icon" href="images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
+    <link rel="shortcut icon" href="../static/images/dog.ico" type="image/x-icon" th:href="@{'/images/dog.ico'}"/>
 </head>
 <body>
 <div th:insert="fragments/menu :: menu">menu</div>
@@ -22,31 +22,31 @@
     <div class="jumbotron">
         <br><br><br>
 
-        <img src="/images/carod.jpg" class="obrazek_kartoteka" th:src="@{'/images/' + ${jedenKontakt.fotka}}"/>
+        <img src="../static/images/carod.jpg" class="obrazek_kartoteka" th:src="@{'/images/' + ${jedenKontakt.fotka}}"/>
 
         <h1 class="text-primary" th:text="${jedenKontakt.jmeno}">Opička Žofka</h1>
         <br>
-        <ul>
-            <li>
-                <td>Povolani:</td>
+        <table>
+            <tr>
+                <td>Povolání:</td>
                 <td th:text="${jedenKontakt.povolani}">Kovář</td>
-            </li>
-            <li>
+            </tr>
+            <tr>
                 <td>Bydliště:</td>
                 <td th:text="${jedenKontakt.bydliste}">Les</td>
-            </li>
-            <li>
+            </tr>
+            <tr>
                 <td>Email:</td>
                 <td th:text="${jedenKontakt.email}">kuk@post.cz</td>
-            </li>
+            </tr>
+        </table>
 
-        </ul>
         <br><br>
 
-        <a th:href="@{'/uprava/' + ${idKontaktu}}" href="uprava.html"
+        <a th:href="@{'/uprava/' + ${jedenKontakt.idKontaktu}}" href="uprava.html"
            class="btn btn-outline-info">Upravit záznam</a>
-        <a th:href="@{'/seznam'}" href="index_zaloha.html" class="btn btn-outline-danger">Zpět na seznam
-            kontaktů</a>
+        <a th:href="@{'/seznam'}" href="index.html"
+           class="btn btn-outline-danger">Zpět na seznam kontaktů</a>
 
     </div>
     <footer class="paticka">
