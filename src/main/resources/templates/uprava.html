@@ -21,12 +21,12 @@
 
 <div class="container">
     <div class="jumbotron">
+        <br><br><br>
+        <h1 class="text-success">Pohádková postava</h1>
+        <br>
+        <h2 class="text-danger" th:if="${#fields.hasErrors('formular.*')}">Nezadali jste všechny položky kontaktu, doplňte to, povolené jsou znaky české abecedy, v emailu i speciální znaky.</h2>
+        <br>
         <form method="post">
-            <br><br><br>
-            <h1 class="text-success">Pohádková postava</h1>
-            <br>
-            <h2 class="text-danger" th:if="${#fields.hasErrors('formular.*')}">Nezadali jste všechny položky kontaktu, doplňte to, povolené jsou znaky české abecedy, v emailu i speciální znaky.</h2>
-            <br>
             <table class="table table-hover">
                 <tr>
                     <td height="100">
