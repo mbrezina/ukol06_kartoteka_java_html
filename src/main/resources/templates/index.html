@@ -13,15 +13,8 @@
     <title>Generátor</title>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i&amp;subset=latin-ext"
           rel="stylesheet"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
-    <link rel="shortcut icon" href="images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
-    <!--/*@thymesVar id="jmeno" type="java.lang.String"*/-->
-    <!--/*@thymesVar id="povolenai" type="java.lang.String"*/-->
-    <!--/*@thymesVar id="bydliste" type="java.lang.String"*/-->
-    <!--/*@thymesVar id="email" type="java.lang.String"*/-->
-    <!--/*@thymesVar id="idKontaktu" type="java.lang.Long"*/-->
-
-
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
+    <link rel="shortcut icon" href="../static/images/dog.ico" type="image/x-icon" th:href="@{'/images/dog.ico'}"/>
 </head>
 <body>
 <div th:insert="fragments/menu :: menu">menu</div>
@@ -30,6 +23,7 @@
     <div class="jumbotron">
         <br><br><br>
         <h1 class="text-primary">Pohádkové kontakty</h1><br>
+        <h2 class="text-danger" th:text="${hlaseni}"></h2><br>
 
         <table class="table table-hover">
             <tr class="table-primary">
@@ -39,7 +33,6 @@
                 <th>Email</th>
                 <th></th>
                 <th></th>
-
             </tr>
             <tr th:each="jedenKontakt : ${seznamKontaktu}">
                 <td th:text="${jedenKontakt.jmeno}">Cipísek</td>
@@ -51,7 +44,7 @@
                        class="btn btn-outline-info">Detail</a>
                 </td>
                 <td>
-                    <form th:action="@{'/seznam/' + ${jedenKontakt.idKontaktu}}" method="post">
+                    <form th:action="@{'/uprava/' + ${jedenKontakt.idKontaktu}}" method="post">
                         <input type="hidden" name="_method" value="DELETE"/>
                         <input type="submit" value="Smazat" class="btn btn-outline-danger"/>
                     </form>

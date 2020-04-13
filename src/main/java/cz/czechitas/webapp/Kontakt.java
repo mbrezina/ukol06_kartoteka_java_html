@@ -1,12 +1,22 @@
 package cz.czechitas.webapp;
 
 public class Kontakt {
+
     private Long idKontaktu;
     private String jmeno;
     private String povolani;
     private String bydliste;
     private String email;
     private String fotka;
+
+    public Kontakt(Long idKontaktu, String jmeno, String povolani, String bydliste, String email, String fotka) {
+        this.idKontaktu = idKontaktu;
+        this.povolani = povolani;
+        this.bydliste = bydliste;
+        this.jmeno = jmeno;
+        this.email = email;
+        this.fotka = fotka;
+    }
 
     public void setFotka(String fotka) {
         this.fotka = fotka;
@@ -54,14 +64,5 @@ public class Kontakt {
 
     public String getEmail() {
         return email;
-    }
-
-    public Kontakt(Long idKontaktu, String jmeno, String povolani, String bydliste, String email, String fotka) {
-        this.idKontaktu = idKontaktu;
-        this.povolani = povolani;
-        this.bydliste = bydliste;
-        this.jmeno = jmeno;
-        this.email = email;
-        this.fotka = fotka;
     }
 }
