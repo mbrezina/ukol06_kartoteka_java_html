@@ -18,27 +18,27 @@ public class HlavniController {
 
     public HlavniController() {
         mapaKontaktu = new TreeMap<Long, Kontakt>();
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
-        mapaKontaktu.put(sekvence++, new Kontakt(sekvence, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Amálka", "víla", "lesní studánka", "amalka@post.cz", "amal.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Elza", "Ledová královna ", "Ledový zámek", "elza@post.cz", "elza.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Mach", "Žák 3.B", "Činžovní dům", "mach@post.cz", "sebes.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Večerníček", "Moderátor", "TV", "vecernicek@post.cz", "vecer.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Pú", "Medvídek", "Stokorcový les", "pu@post.cz", "pooh.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Peppa", "Skákat v kalužích", "U mámy a táty", "peppa@post.cz", "peppa.jpg"));
+        mapaKontaktu.put(++sekvence, new Kontakt(sekvence, "Rumcajs", "Loupežník", "Řáholec", "rumcajs@post.cz", "rum.jpg"));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -152,6 +152,6 @@ public class HlavniController {
     }
 
     private Kontakt findById(Long idHledanehoKontaktu) {
-        return mapaKontaktu.get(idKontaktu);
+        return mapaKontaktu.get(idHledanehoKontaktu);
     }
 }
