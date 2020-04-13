@@ -20,34 +20,33 @@
 
 <div class="container">
     <div class="jumbotron">
-        <br><br><br>
+        <div margin-top="1rem">
+            <img src="/images/carod.jpg" class="obrazek_kartoteka" th:src="@{'/images/' + ${jedenKontakt.fotka}}"/>
 
-        <img src="/images/carod.jpg" class="obrazek_kartoteka" th:src="@{'/images/' + ${jedenKontakt.fotka}}"/>
+            <h1 class="text-primary" th:text="${jedenKontakt.jmeno}">Opička Žofka</h1>
+            <br>
+            <ul>
+                <li>
+                    <td>Povolani:</td>
+                    <td th:text="${jedenKontakt.povolani}">Kovář</td>
+                </li>
+                <li>
+                    <td>Bydliště:</td>
+                    <td th:text="${jedenKontakt.bydliste}">Les</td>
+                </li>
+                <li>
+                    <td>Email:</td>
+                    <td th:text="${jedenKontakt.email}">kuk@post.cz</td>
+                </li>
 
-        <h1 class="text-primary" th:text="${jedenKontakt.jmeno}">Opička Žofka</h1>
-        <br>
-        <ul>
-            <li>
-                <td>Povolani:</td>
-                <td th:text="${jedenKontakt.povolani}">Kovář</td>
-            </li>
-            <li>
-                <td>Bydliště:</td>
-                <td th:text="${jedenKontakt.bydliste}">Les</td>
-            </li>
-            <li>
-                <td>Email:</td>
-                <td th:text="${jedenKontakt.email}">kuk@post.cz</td>
-            </li>
+            </ul>
+            <br><br>
 
-        </ul>
-        <br><br>
-
-        <a th:href="@{'/uprava/' + ${idKontaktu}}" href="uprava.html"
-           class="btn btn-outline-info">Upravit záznam</a>
-        <a th:href="@{'/seznam'}" href="index_zaloha.html" class="btn btn-outline-danger">Zpět na seznam
-            kontaktů</a>
-
+            <a th:href="@{'/uprava/' + ${idKontaktu}}" href="uprava.html"
+               class="btn btn-outline-info">Upravit záznam</a>
+            <a th:href="@{'/seznam'}" href="index.html" class="btn btn-outline-danger">Zpět na seznam
+                kontaktů</a>
+        </div>
     </div>
     <footer class="paticka">
         <div>
