@@ -13,15 +13,8 @@
     <title>Generátor</title>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i&amp;subset=latin-ext"
           rel="stylesheet"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
-    <link rel="shortcut icon" href="images/dog_ico" type="image/x-icon" th:href="@{'/images/dog_ico'}"/>
-    <!--/*@thymesVar id="jmeno" type="java.lang.String"*/-->
-    <!--/*@thymesVar id="povolenai" type="java.lang.String"*/-->
-    <!--/*@thymesVar id="bydliste" type="java.lang.String"*/-->
-    <!--/*@thymesVar id="email" type="java.lang.String"*/-->
-    <!--/*@thymesVar id="idKontaktu" type="java.lang.Long"*/-->
-
-
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
+    <link rel="shortcut icon" href="../static/images/dog.ico" type="image/x-icon" th:href="@{'/images/dog.ico'}"/>
 </head>
 <body>
 <div th:insert="fragments/menu :: menu">menu</div>
@@ -41,25 +34,22 @@
                 <th></th>
                 <th></th>
             </tr>
-            <th:block th:each="item : ${seznamKontaktu}">
-                <tr th:each="jedenKontakt : ${item.value}">
-                    <td th:text="${jedenKontakt.jmeno}">Cipísek</td>
-                    <td th:text="${jedenKontakt.povolani}">Syn loupežníka</td>
-                    <td th:text="${jedenKontakt.bydliste}">Řáholec</td>
-                    <td th:text="${jedenKontakt.email}">jhdsagf@vikuna.cz</td>
-
-                    <td>
-                        <a th:href="@{'/detail/' + ${item.key}}" href="detail.html"
-                           class="btn btn-outline-info">Detail</a>
-                    </td>
-                    <td>
-                        <form th:action="@{'/seznam/' + ${item.key}}" method="post">
-                            <input type="hidden" name="_method" value="DELETE"/>
-                            <input type="submit" value="Smazat" class="btn btn-outline-danger"/>
-                        </form>
-                    </td>
-                </tr>
-            </th:block>
+            <tr th:each="jedenKontakt : ${seznamKontaktu}">
+                <td th:text="${jedenKontakt.jmeno}">Cipísek</td>
+                <td th:text="${jedenKontakt.povolani}">Syn loupežníka</td>
+                <td th:text="${jedenKontakt.bydliste}">Řáholec</td>
+                <td th:text="${jedenKontakt.email}">jhdsagf@vikuna.cz</td>
+                <td>
+                    <a th:href="@{'/detail/' + ${jedenKontakt.idKontaktu}}" href="detail.html"
+                       class="btn btn-outline-info">Detail</a>
+                </td>
+                <td>
+                    <form th:action="@{'/uprava/' + ${jedenKontakt.idKontaktu}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE"/>
+                        <input type="submit" value="Smazat" class="btn btn-outline-danger"/>
+                    </form>
+                </td>
+            </tr>
         </table>
         <a th:href="@{'/novy'}" href="detail.html" class="btn btn-outline-success">Zadat nový kontakt</a>
     </div>
