@@ -9,7 +9,7 @@
     <meta name="robots" content="index, follow"/>
     <meta name="keywords" content="java, web"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Generátor</title>
+    <title>Pohádkový detail</title>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i&amp;subset=latin-ext"
           rel="stylesheet"/>
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{'/css/bootstrap.min.css'}"/>
@@ -20,8 +20,6 @@
 
 <div class="container">
     <div class="jumbotron">
-        <br><br><br>
-
         <img src="../static/images/carod.jpg" class="obrazek_kartoteka" th:src="@{'/images/' + ${jedenKontakt.fotka}}"/>
 
         <h1 class="text-primary" th:text="${jedenKontakt.jmeno}">Opička Žofka</h1>
