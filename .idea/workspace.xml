@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f13004e0-da64-432e-b387-165cddfef74c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/java_module_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/java_module_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring3_3_0_8_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-module.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-module.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/czechitas/webapp/HlavniController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/czechitas/webapp/HlavniController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/uprava.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/uprava.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/czechitas/webapp/KontaktRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/czechitas/webapp/KontaktRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +36,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last.edited.regexp" value="martiik_asf?@seznam.com" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../41-Husy_a_kralici-Validation" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lekce09/21-JDBC_select_String-Reseni" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -69,7 +63,9 @@
       <workItem from="1586406004884" duration="464000" />
       <workItem from="1586406867044" duration="37551000" />
       <workItem from="1586885484069" duration="599000" />
-      <workItem from="1586932046644" duration="17934000" />
+      <workItem from="1586932046644" duration="18530000" />
+      <workItem from="1587098504776" duration="30000" />
+      <workItem from="1587488615208" duration="1371000" />
     </task>
     <servers />
   </component>
@@ -81,18 +77,18 @@
       <screen x="75" y="27" width="1845" height="1053" />
     </state>
     <state x="683" y="240" width="618" height="625" key="#Images/75.27.1845.1053@75.27.1845.1053" timestamp="1586531062533" />
-    <state x="805" y="271" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1586957191963">
+    <state x="805" y="271" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1587489146558">
       <screen x="75" y="27" width="1845" height="1053" />
     </state>
-    <state x="805" y="271" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/75.27.1845.1053@75.27.1845.1053" timestamp="1586957191963" />
+    <state x="805" y="271" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/75.27.1845.1053@75.27.1845.1053" timestamp="1587489146558" />
     <state x="755" y="296" key="#xdebugger.evaluate" timestamp="1586619463066">
       <screen x="75" y="27" width="1845" height="1053" />
     </state>
     <state x="755" y="296" key="#xdebugger.evaluate/75.27.1845.1053@75.27.1845.1053" timestamp="1586619463066" />
-    <state x="775" y="295" width="424" height="514" key="FileChooserDialogImpl" timestamp="1586713063508">
+    <state x="775" y="295" width="718" height="514" key="FileChooserDialogImpl" timestamp="1587490849484">
       <screen x="75" y="27" width="1845" height="1053" />
     </state>
-    <state x="775" y="295" width="424" height="514" key="FileChooserDialogImpl/75.27.1845.1053@75.27.1845.1053" timestamp="1586713063508" />
+    <state x="775" y="295" width="718" height="514" key="FileChooserDialogImpl/75.27.1845.1053@75.27.1845.1053" timestamp="1587490849484" />
     <state width="1799" height="213" key="GridCell.Tab.0.bottom" timestamp="1587017644107">
       <screen x="75" y="27" width="1845" height="1053" />
     </state>
@@ -153,5 +149,9 @@
     </state>
     <state width="1799" height="346" key="GridCell.Tab.2.right/75.27.1845.1053@75.27.1845.1053" timestamp="1586715486985" />
     <state width="1799" height="472" key="GridCell.Tab.2.right/75.27.3765.1053@75.27.3765.1053" timestamp="1586438511094" />
+    <state x="195" y="27" width="1474" height="818" key="new project wizard" timestamp="1587490829221">
+      <screen x="75" y="27" width="1845" height="1053" />
+    </state>
+    <state x="195" y="27" width="1474" height="818" key="new project wizard/75.27.1845.1053@75.27.1845.1053" timestamp="1587490829221" />
   </component>
 </project>

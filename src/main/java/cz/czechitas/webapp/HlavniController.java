@@ -12,9 +12,9 @@ import java.util.*;
 
 @Controller
 public class HlavniController {
-    private KontaktRepository kontaktRepository = new KontaktRepository();
+    private KontaktRepository kontaktRepository;
 
-    public HlavniController() {
+    public HlavniController(KontaktRepository kontaktRepository) {
         this.kontaktRepository = new KontaktRepository();
     }
 
